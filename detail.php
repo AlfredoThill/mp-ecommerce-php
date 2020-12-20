@@ -10,7 +10,6 @@
 
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
-   
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
     $item->id = 1234;
@@ -22,11 +21,15 @@
     $item->external_reference = "alfredothill@gmail.com";
     $preference->items = array($item);
     // Medios de Pago
-    $payment_method = new MercadoPago\PaymentMethod();
-    $payment_method->excluded_payment_methods = array('id' => 'amex');
-    $payment_method->excluded_payment_types = array('id' => 'atm');
-    $payment_method->installments = 6;
-    $preference->payment_method = array($payment_method);
+    $preference->payment_methods = array(
+        "excluded_payment_methods" => array(
+          array("id" => "amex")
+        ),
+        "excluded_payment_types" => array(
+          array("id" => "atm")
+        ),
+        "installments" => 6
+      );
     // Datos del pagador
     $payer = new MercadoPago\Payer();
     $payer->name = "Lalo";
@@ -44,13 +47,13 @@
     $preference->payer = $payer;
     // Páginas de retorno
     $preference->back_urls = array(
-        "success" => "/success.php",
-        "failure" => "/failure.php",
-        "pending" => "/pending.php"
+        "success" => $_SERVER['HTTP_HOST'] . "/success.php",
+        "failure" => $_SERVER['HTTP_HOST'] . "/failure.php",
+        "pending" => $_SERVER['HTTP_HOST'] . "/pending.php"
     );
     $preference->auto_return = "approved";
     // Notificaciones Webhook
-    $preference->notification_url = "/ipn.php";s
+    $preference->notification_url = $_SERVER['HTTP_HOST'] . "/ipn.php";
     // Save stuff
     $preference->save();
     ?>
