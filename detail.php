@@ -53,7 +53,11 @@
     );
     $preference->auto_return = "approved";
     // Notificaciones Webhook
+<<<<<<< HEAD
     $preference->notification_url = $_SERVER['HTTP_HOST'] . "/ipn.php";
+=======
+    $preference->notification_url = "/ipn.php";
+>>>>>>> 1ce588c9e9be4b1d47bf93f7d542ce836c359239
     // Save stuff
     $preference->save();
     ?>
