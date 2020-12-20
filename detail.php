@@ -50,7 +50,7 @@
     );
     $preference->auto_return = "approved";
     // Notificaciones Webhook
-    $preference->notification_url = "/ipn.php";s
+    $preference->notification_url = "/ipn.php";
     // Save stuff
     $preference->save();
     ?>
